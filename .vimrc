@@ -1,12 +1,15 @@
 " Set defaults
+set nocompatible
 set nu
 set encoding=utf-8
 syntax on
 
-let $PYTHONHOME='/packages/python-2.7.13-3/.self/'
-let $PYTHONPATH='/packages/python-2.7.13-3/.self/lib/'
+"let $PYTHONHOME='/packages/python-2.7.13-3/.self/'
+"let $PYTHONPATH='/packages/python-2.7.13-3/.self/lib/'
 
 call plug#begin('~/.vim/plugged')
+    " Code completion
+    Plug 'Valloric/YouCompleteMe'  
     " Code snippets
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -38,19 +41,20 @@ call plug#begin('~/.vim/plugged')
 "" Initialize plugin system
 call plug#end()
 
-" UltiSnips config
-inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 """"""" SuperTab configuration """""""
-"let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-function! Completefunc(findstart, base)
-    return "\<c-x>\<c-p>"
-endfunction
-
 let g:SuperTabClosePreviewOnPopupClose = 1
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 """"""" General coding stuff """""""
 set list
 set listchars=tab:>-,trail:-,extends:#,nbsp:-
