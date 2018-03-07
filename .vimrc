@@ -55,6 +55,9 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+" Tagbar configuration
+let g:tagbar_ctags_bin = "/usr/bin/ctags"
+
 """"""" General coding stuff """""""
 set list
 set listchars=tab:>-,trail:-,extends:#,nbsp:-
@@ -116,4 +119,4 @@ nnoremap <space> za
 autocmd stdinreadpre * let s:std_in=1
 autocmd vimenter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'nerdtree' argv()[0] | wincmd p | ene | endif
 
-
+nmap <F8> :TagbarToggle<CR>
